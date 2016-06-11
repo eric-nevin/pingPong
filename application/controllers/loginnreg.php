@@ -6,7 +6,7 @@ class loginnreg extends CI_Controller {
 	}
 	public function log_logged(){
 		if($this->session->userdata('id')){
-			$this->load->view('loggedin_page');
+			redirect('home');
 		}
 		else {
 		redirect('login');
@@ -37,7 +37,10 @@ class loginnreg extends CI_Controller {
 		}  
 		if(empty($this->input->post('last_name'))){
 			$this->session->set_userdata("error_last","Required Field.");
-		} 
+		}
+		if(empty($this->input->post('username'))){
+			$this->session->set_userdata("error_username","Required Field.");
+		}  
 		if(empty($this->input->post('email'))){
 			$this->session->set_userdata("error_email","Required Field.");
 		} 
@@ -58,10 +61,11 @@ class loginnreg extends CI_Controller {
 		$this->session->set_userdata('useremail', $user_email);
 		$register_validation=$this->LoginnregModel->user_validation($user_info);
 
-		if($register_validation['id'] !== null){
+		if($register_validation){
+			
 			$this->session->set_userdata('error_user', 'This email already in use.');
 		}
-		if($this->session->userdata('error_first') || $this->session->userdata('error_last') || $this->session->userdata('error_email') || $this->session->userdata('error_password') || $this->session->userdata('error_cpassword') || $this->session->userdata('error_match') || $this->session->userdata('error_length') || $this->session->userdata('error_user')){
+		if($this->session->userdata('error_first') || $this->session->userdata('error_last') || $this->session->userdata('error_username') || $this->session->userdata('error_email') || $this->session->userdata('error_password') || $this->session->userdata('error_cpassword') || $this->session->userdata('error_match') || $this->session->userdata('error_length') || $this->session->userdata('error_user')){
 			redirect('registration');
 		}	
 		$register_user= $this->LoginnregModel->register_user($user_info);

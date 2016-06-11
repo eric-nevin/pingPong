@@ -20,7 +20,7 @@
 	</style>
 </head>
 <body>
-<?php var_dump($this->session->all_userdata()); ?>
+
 
 	<div id="container">
 		<form action="loggedinuser" method="post">

@@ -45,6 +45,18 @@ $route['register']='loginnreg/register_validation';
 $route['registerlogin']='loginnreg/registerlogin';
 $route['loggedinuser']='loginnreg/login_setup';
 $route['logoff']='loginnreg/logoff';
+
+$route['home']='dashboard/display_home';
+$route['all_users']='dashboard/display_all_users';
+// $route['friends']='dashboard/display_users_friend';
+// $route['groups']='dashboard/view_all_group';
+// $route['event/(:any)']='dashboard/display_event_topic/$1';
+// $route['leaderboard']='dashboard/view_leaderboards';
+// $route['friendleaderboard']='dashboard/view_leaderboards2';
+// $route['group/add/(:any)'] = 'dashboard/display_users_friend2/$1';
+// $route['my_groups'] = 'dashboard/display_users_circle';
+// $route['group/(:any)'] = 'dashboard/display_circle/$1';
+
 $route['404_override'] = '';
 
 
