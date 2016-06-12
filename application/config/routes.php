@@ -48,6 +48,7 @@ $route['logoff']='loginnreg/logoff';
 
 $route['home']='dashboard/display_home';
 $route['all_users']='dashboard/display_all_users';
+$route['group/(:any)']='dashboard/display_group_page/$1';
 // $route['friends']='dashboard/display_users_friend';
 // $route['groups']='dashboard/view_all_group';
 // $route['event/(:any)']='dashboard/display_event_topic/$1';

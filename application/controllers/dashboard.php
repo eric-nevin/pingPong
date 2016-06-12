@@ -10,7 +10,8 @@ class Dashboard extends CI_Controller {
 		$groups = $this->Dashboards->display_groups();
 		$user_info = $this->Dashboards->display_home_users($id);
 		$global_ladder = $this->Dashboards->display_global_ladder();
-		$data = array('user_info' => $user_info, 'global_ladder' => $global_ladder, 'groups' => $groups);
+		$global_score = $this->Dashboards->display_global_score($id);
+		$data = array('user_info' => $user_info, 'global_ladder' => $global_ladder, 'groups' => $groups, 'global_score' => $global_score);
 		$this->load->view('home', $data);
 	}
 	public function display_all_users(){

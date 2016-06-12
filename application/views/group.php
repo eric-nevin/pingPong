@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
     <title>Friends</title>
     <style>
-   /*   body,html {
+      body,html {
         height: 100%;
       }
       body {
@@ -39,13 +39,15 @@
       }
       .th-4 {
         width: 20%;
-      }*/
+      }
     </style>
   </head>
   <body>
-<h1>Welcome <?= $user_info['username']; ?></h1>
-
-  <!--   <div class="navbar navbar-inverse navbar-fixed-top">
+<h1>Home</h1>
+<?php var_dump($user_info);
+var_dump($global_ladder); 
+var_dump($groups); ?>
+    <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -55,39 +57,7 @@
           </button>
           <a class="navbar-brand" href="">Ping Pong</a>
         </div>
- -->    <div class='container'>
-      <div class="row">
-          <div class="col-xs-3">
-        <!-- icon -->
-          </div>
-          <div class="col-xs-9">
-          <h2>Name: <?= $user_info['first_name']. " " .$user_info['last_name']; ?></h2>
-          <h4>Current Stack: <?= $user_info['stack']. " ". $user_info['start_date']; ?> </h4>
-          <h4>Total Wins: <?= $global_score[0]. '-' .$global_score[1]; ?>    </h4>
-
-          <!-- profile -->
-          </div>
-      </div> <!-- end of top section -->
-      <div class="row">
-        <div class="row">
-
-        </div>
-        <div class="col-xs-9">
-            <?php foreach($groups as $values){ ?>
-              <button><a href= "/group/<?= $values['id']; ?>"><?= $values['stack']. ' ' .$values['start_date']; ?></a></button>
-            <?= "<br>"; ?>
-            <?php } ?>
-        </div>
-        <div class="col-xs-3">
-            <?php foreach($global_ladder as $values){
-              echo $values['rank']. " " .$values['username'];
-              echo "<br>";
-            } ?>
-        </div>
-      </div>
-      <div class="row">
-        <!--buttons for filtering -->
-      </div>
-    <!-- </div> -->
+    <div class='container'>
+    </div>
   </body>
 </html>

@@ -7,12 +7,25 @@ class Dashboards extends CI_Model {
 		return $this->db->query($query, $values)->row_array();
 	}
 	function display_groups(){
-		$query = "SELECT * FROM groups";
+		$query = "SELECT * FROM groups ORDER BY id desc LIMIT 3";
 		return $this->db->query($query)->result_array();
 	}
 	function display_global_ladder(){
-		$query= "SELECT * FROM users LEFT JOIN user_groups ON users.id = user_groups.user_id WHERE user_groups.group_id = 1 ORDER BY rank desc";
+		$query = "SELECT * FROM users LEFT JOIN user_groups ON users.id = user_groups.user_id WHERE user_groups.group_id = 1 ORDER BY rank LIMIT 10";
 		return $this->db->query($query)->result_array();
+		
+	}
+	function display_global_score($id){
+		$query = "SELECT * FROM scores WHERE user_id = ?";
+		$all_scores = $this->db->query($query, $id)->result_array();
+		$win_total = 0;
+		$loss_total = 0;
+		foreach ($all_scores as $values) {
+			$win_total += $values['wins'];
+			$loss_total += $values['losses'];
+		}
+		$returned = array($win_total, $loss_total);
+		return $returned;
 	}
 	function display_user_list(){
 		$query = "SELECT * FROM users WHERE availability = 1";
