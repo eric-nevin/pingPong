@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
     <title>Friends</title>
     <style>
-   /*   body,html {
+      body,html {
         height: 100%;
       }
       body {
@@ -26,26 +26,28 @@
         margin-top: 50px;
       }
       th {
-        /*border: 1px solid gray;*/
+        border: 1px solid gray;
       }
       .th-1 {
         width: 45%;
       }
-     /* .th-2 {
+     .th-2 {
         width: 35%;
-      }*/
+      }
       .th-3 {
         width: 25%;
       }
       .th-4 {
         width: 20%;
-      }*/
+      }
+
+     
+
     </style>
   </head>
   <body>
-<h1>Welcome <?= $user_info['username']; ?></h1>
 
-  <!--   <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -53,16 +55,33 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="">Ping Pong</a>
+          <a class="navbar-brand" href="/home">Ping Pong</a>
         </div>
- -->    <div class='container'>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li><a <?php if($potential_games != null){ ?> style="color: orange" <?php } ?> href="/notifications">Notifications</a></li>
+            <li><a href="/groups">Groups</a></li>
+            <li><a href="/leaderboard">Leaderboard</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="/loginnreg/logoff">Logout</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    
+    <div class='container'>
+
       <div class="row">
+      <h1>Welcome <?= $user_info[0]['username']; ?></h1>
           <div class="col-xs-3">
+
         <!-- icon -->
           </div>
           <div class="col-xs-9">
-          <h2>Name: <?= $user_info['first_name']. " " .$user_info['last_name']; ?></h2>
-          <h4>Current Stack: <?= $user_info['stack']. " ". $user_info['start_date']; ?> </h4>
+          <h2>Name: <?= $user_info[0]['first_name']. " " .$user_info[0]['last_name']; ?></h2>
+          <h4>Current Stack: <?= $current_group['stack']. " " .$current_group['start_date']; ?> </h4>
           <h4>Total Wins: <?= $global_score[0]. '-' .$global_score[1]; ?>    </h4>
 
           <!-- profile -->
@@ -88,6 +107,6 @@
       <div class="row">
         <!--buttons for filtering -->
       </div>
-    <!-- </div> -->
+      </div>
   </body>
 </html>

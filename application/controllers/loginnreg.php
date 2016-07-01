@@ -1,5 +1,4 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-
 class loginnreg extends CI_Controller {
 	public function index()
 	{
@@ -19,14 +18,29 @@ class loginnreg extends CI_Controller {
 		$this->load->view('registration_page');
 	}
 	public function login_setup(){
+
 		$this->load->model('LoginnregModel');
 		$user_info= $this->input->post();
 		$login_user= $this->LoginnregModel->login_user($user_info);
 		if($login_user){
-		$this->session->set_userdata('id', $login_user['id']);
-		redirect('/');
-		} 
-		else {
+			$this->session->set_userdata('id', $login_user['id']);
+
+			// $id = $this->session->userdata('id');
+			// $this->load->model('Dashboards');
+			// $user = $this->Dashboards->display_user($id);
+			// $jwt = JWT::encode(
+   //      			$user,
+   //      			$secretKey,
+   //      			'HS512'
+   //      	);
+			// $unencoded = ['jwt' => $jwt];
+			// $encoded = json_encode($unencoded);
+			// $this->session->set_userdata('token', $unencoded);
+			// var_dump($encoded);
+			// die();
+
+			redirect('/');
+			} else {
 			echo "There was an error with your login information";
 		}
 	}

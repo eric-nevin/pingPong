@@ -26,27 +26,32 @@
         margin-top: 50px;
       }
       th {
-        /*border: 1px solid gray;*/
+        border: 1px solid gray;*/
       }
       .th-1 {
         width: 45%;
       }
-     /* .th-2 {
+      .th-2 {
         width: 35%;
-      }*/
+      }
       .th-3 {
         width: 25%;
       }
       .th-4 {
         width: 20%;
       }
+      .profile{
+        height: 30px;
+        width: 100%;
+        background-color: silver; 
+        margin-bottom: 5px;
+        border: 1px solid black;
+        text-align: center;
+      }
     </style>
   </head>
   <body>
-<h1>Home</h1>
-<?php var_dump($user_info);
-var_dump($global_ladder); 
-var_dump($groups); ?>
+
     <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
@@ -55,9 +60,32 @@ var_dump($groups); ?>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="">Ping Pong</a>
+          <a class="navbar-brand" href="/home">Ping Pong</a>
         </div>
-    <div class='container'>
+      </div>
     </div>
+
+    <div class='container'>
+      <div class="row">
+        <h2><?= $group_info['stack']. " ".$group_info['start_date']; ?></h2>
+      </div>
+      <div class="row">
+        <div class="col-xs-6">
+          <h1>Cohort Players</h1>
+          <?php foreach($group_users as $values){ ?>
+            <a href="/view_profile/<?= $values['id']; ?>"><div class="profile"><?= $values['username']; ?></div></a>
+         <?php } ?>
+        </div>
+        <div class="col-xs-6">
+        <h1>Cohort Leaders</h1>
+        <?php foreach($group_ladder as $values){ ?>
+          <a href="/view_profile/<?= $values['id']; ?>"><div class="profile"><?= $values['rank']. " " .$values['username']; ?></div></a>
+        <?php } ?>
+        </div>
+        <a href="/chat/<?= $group_info['id']; ?>">Chat</a>
+      </div>
+      <?php var_dump($group_info); ?>
+      
+      </div>
   </body>
 </html>
