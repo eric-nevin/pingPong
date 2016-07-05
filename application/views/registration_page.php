@@ -34,6 +34,10 @@
 		    		<label>Last Name:</label>
 		    		<input type="text" class="form-control" id="last_name" name="last_name" length="10">
 
+		    		<i class="material-icons prefix">account_circle</i>
+		    		<label>Username: </label>
+		    		<input type="text" class="form-control" id="username" name="username" length="10">
+
 		    		<i class="material-icons prefix">phone</i>
 		    		<label for="icon_telephone">Phone Number:</label>
 		    		<input type="tel" class="form-control" name="telephone" length="10">
