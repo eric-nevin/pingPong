@@ -1,0 +1,35 @@
+<html ng-app='myApp'>
+<style> .even{
+        background-color: #F0F3FC; border: 1px solid #CCCCCC;
+        } 
+        .odd{
+          background-color: white; border: 1px solid #CCCCCC;
+        }
+        .chat_content{
+        	margin-left: 1em;
+        	margin-bottom: 1em;
+        }
+        h4 {
+        	margin-top: 5px;
+        }
+
+  </style>
+<div ng-controller='chatController'>
+
+	Username: {{ user.username }}
+	<br>
+	Stack name: {{ group.stack }}
+	<form id='chatform'>
+		Send Chat: <input type='text' ng-model='new_chat.content'>
+		<input type='submit' ng-click='addChat(new_chat)'>
+	</form>
+	<div id='chatroom' style='height: 100%; padding-left: 2em; margin-left: 5em; margin-bottom: 5em; overflow: scroll;'>
+		<div ng-repeat ='chat in chats'>
+			
+			<div ng-class-even="'even'" ng-class-odd="'odd'">
+				<small>{{ chat.created_at }}</small><h4>{{ chat.sender }}</h4><text class='chat_content'>{{ chat.content }}</text><br>
+			</div>
+		</div>
+	</div>
+</div>
+</html>
