@@ -17,3 +17,8 @@ body{
     top:0px;
 
 }
+#groupback {
+	background: white;	
+	border-radius: 5px;
+	height: 600px;
+}
