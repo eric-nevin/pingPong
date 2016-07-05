@@ -57,6 +57,9 @@ $route['chat/(:any)'] = 'dashboard/display_chat/$1';
 $route['invite/(:any)'] = 'dashboard/add_invite/$1';
 $route['confirmation'] = 'dashboard/confirmed';
 
+$route['unicorn'] = 'unicorn/display_admin';
+$route['add_group'] = 'unicorn/add_group';
+
 $route['chat_api'] = 'mean/api';
 $route['group_api/(:any)'] = 'mean/group_api/$1';
 

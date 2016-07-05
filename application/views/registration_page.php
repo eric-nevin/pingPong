@@ -13,6 +13,10 @@
 		 // $(document).ready(function() {
 		 //    Materialize.updateTextFields();
 		 //  });
+		 $(document).ready(function() {
+		 	$('select').material_select();
+		 });
+
 	</script>
 </head>
 <body>
@@ -24,7 +28,7 @@
    	</div>	
    	<div class="row">	
    		<div class="col s5" id="login_border">
-			<form action="" method="post">
+			<form action="/register" method="post">
 
 					<i class="material-icons prefix">account_circle</i>
 					<label>First Name:</label>
@@ -49,6 +53,18 @@
 	  				<i class="material-icons prefix">vpn_key</i>
 	    			<label for="password">Password</label>
 	    			<input type="password" class="form-control" id="password" name="password">
+
+	    			<i class="material-icons prefix">vpn_key</i>
+	    			<label for="cpassword">Password</label>
+	    			<input type="password" class="form-control" id="cpassword" name="cpassword">
+
+	    			<i class="material-icons prefix">account_circle</i>
+	    			<label for="stack">Stack</label>
+	    			<select name="stack">
+	    				<?php foreach ($groups as $group) { ?>
+	    					<option value="<?= $group['id']; ?>"><?= $group['stack']; ?></option>
+	    				<?php } ?>
+	    			</select>
 	  		
 	  				<button type="submit" class="waves-effect waves-light btn green">Register</button>
 			</form>
@@ -59,5 +75,6 @@
 		</div>
 	</div>
 </div>
+
 </body>
 </html>
