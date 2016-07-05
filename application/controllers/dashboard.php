@@ -39,7 +39,8 @@ class Dashboard extends CI_Controller {
 		$user_info = $this->Dashboards->display_home_users($user_id);
 		$current_group = $this->Dashboards->display_current_group($user_id);
 		$global_score = $this->Dashboards->display_global_score($user_id);
-		$data = array('user_info' => $user_info, 'global_score' => $global_score, 'current_group' => $current_group);
+		$global_ladder = $this->Dashboards->display_global_ladder();
+		$data = array('user_info' => $user_info, 'global_score' => $global_score, 'current_group' => $current_group, 'global_ladder' => $global_ladder);
 		if($id == $user_id){
 			redirect('/home');
 		} else {
@@ -51,7 +52,8 @@ class Dashboard extends CI_Controller {
 		$user_info = $this->Dashboards->display_home_users($opponent_id);
 		$current_group = $this->Dashboards->display_current_group($opponent_id);
 		$global_score = $this->Dashboards->display_global_score($opponent_id);
-		$data = array('user_info' => $user_info, 'global_score' => $global_score, 'current_group' => $current_group);
+		$global_ladder = $this->Dashboards->display_global_ladder();
+		$data = array('user_info' => $user_info, 'global_score' => $global_score, 'current_group' => $current_group, 'global_ladder' => $global_ladder);
 		$this->load->view('game_form', $data);
 	}
 	public function add_potential_game(){
