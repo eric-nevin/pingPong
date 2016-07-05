@@ -10,7 +10,7 @@ class Dashboard extends CI_Controller {
 		$this->Dashboards->check_invite();
 		$this->Dashboards->check_rank();
 		$groups = $this->Dashboards->display_groups();
-		$user_info = $this->Dashboards->display_home_users($id);
+		$user_info = $this->Dashboards->display_user($id);
 		$global_ladder = $this->Dashboards->display_global_ladder();
 		$global_score = $this->Dashboards->display_global_score($id);
 		$current_group = $this->Dashboards->display_current_group($id);

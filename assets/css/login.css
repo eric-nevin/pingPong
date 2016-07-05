@@ -1,0 +1,18 @@
+body{
+ 	background-image: url('../images/dojo.png');
+}
+h5{
+	color: white;	
+}
+
+#login_border{
+	width: 300px;
+	border: 1px solid black;
+	padding: 50px;
+	border-radius: 20px;
+	background-color: white;
+}
+
+#new{
+	color: rgb(255, 0, 135);
+}

@@ -2,7 +2,7 @@
 
 class Dashboards extends CI_Model {
 	function display_user($id){
-		$query = "SELECT * FROM users WHERE id = ?";
+		$query = "SELECT * FROM users LEFT JOIN user_groups ON users.id = user_groups.user_id LEFT JOIN groups ON user_groups.group_id = groups.id WHERE users.id = ?";
 		return $this->db->query($query, $id)->row_array();
 	}
 	function display_home_users($id){
