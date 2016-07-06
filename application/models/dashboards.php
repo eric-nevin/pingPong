@@ -185,11 +185,62 @@ class Dashboards extends CI_Model {
 				$query = "DELETE FROM invites WHERE id = ?";
 				$this->db->query($query, $invite['id']);
 			} 
+		}	
+	}
+	function get_user($id) {
+		$query = "SELECT * FROM users WHERE id = ?";
+		return $this->db->query($query, $id)->row_array();
+	}
+	function get_active_groups() {
+		$query = "SELECT * FROM groups WHERE active = 1";
+		return $this->db->query($query)->result_array(); 
+	}
+	function user_availability($id){
+		$query = "SELECT availability FROM users WHERE id = ?";
+		$availability = $this->db->query($query, $id)->row_array();
+		if ($availability['availability'] == 1) {
+			$query = "UPDATE users SET availability = 0";
+			$this->db->query($query);
+		} else {
+			$query = "UPDATE users SET availability = 1";
+			$this->db->query($query);
+		}
+	}
+	function change_settings($info, $id){
+		$bool = true;
+		$query = "UPDATE users SET username = ? WHERE users.id = ?";
+		$values = array($info['username'], $id);
+		$this->db->query($query, $values);
+		$query = "UPDATE users SET phone_number = ? WHERE users.id = ?";
+		$values = array($info['telephone'], $id);
+		$this->db->query($query, $values);
+
+		$query = "SELECT * FROM user_groups WHERE group_id = ? ORDER BY rank desc LIMIT 1";
+		$values = array($info['stack']);
+		$last_rank = $this->db->query($query, $values)->row_array();
+		$new_rank = $last_rank['rank'] + 1;
+		$query = "SELECT * FROM user_groups WHERE user_id = ?";
+		$users_groups = $this->db->query($query, $id)->result_array();
+
+		
+
+		foreach ($users_groups as $group) {
+			if ($group['group_id'] != $info['stack']){
+				continue;
+			} else {
+				$bool = false;
+			}
 		}
 		
+		if ($bool == true){
+			$query = "INSERT INTO user_groups(group_id, user_id, rank, points) VALUES (?,?,?,0)";
+			$values = array($info['stack'], $id, $new_rank);
+			$this->db->query($query, $values);
+		}
 		
-		
-		
-		
+	}
+	function display_available_users(){
+		$query = "SELECT * FROM users WHERE availability = 1";
+		return $this->db->query($query)->result_array();
 	}
 }

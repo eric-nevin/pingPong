@@ -40,10 +40,7 @@
               <a href="#">Tournaments</a>
           </li>
           <li>
-              <a href="/all_users">Active Users</a>
-          </li>
-           <li>
-              <a href="/chat/<?= $user_info['id']; ?>">Group Chat</a>
+              <a href="/groups">Stacks</a>
           </li>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Works <span class="caret"></span></a>
@@ -85,19 +82,21 @@
                 <h3>Name: <?= $user_info['first_name']. " " .$user_info['last_name']; ?></h3>
                 <h3>Current Stack: <?= $user_info['stack']. " ". $user_info['start_date']; ?> </h3>
                 <h3>Total Wins: <?= $global_score[0]. '-' .$global_score[1]; ?>    </h3>
-            </div>
-        </div> <!-- end of top section -->
-        <div class="row">
-            <div class="col-xs-4">
+                <div class="col-xs-4">
 
-                <?php foreach($groups as $values){ ?>
+                <?php foreach($available_groups as $values){ ?>
                   <a href= "/group/<?= $values['id']; ?>"><button class="btn btn-primary"><?= $values['stack']. ' ' .$values['start_date']; ?></button></a>
                 <?= "<br>"; ?>
                 <?php } ?>
             </div>  <!-- stacks stacks stacks -->
+            </div>
+        </div> <!-- end of top section -->
+        <div class="row">
+            
         </div>
     </div> <!-- end of container -->
   </div> <!-- #page-content-wrapper -->
+
     <div class="col-xs-3" id="leaderboard"> <!-- fixed leaderboard to the rightside not in grid system -->
           <h3 class="text-center">LeaderBoard</h3>
           <table class="table table-hover">
@@ -119,7 +118,6 @@
           </table>
       </div> <!-- leaderboard div -->
   </div>
-
        <!-- /#wrapper -->
 </body>
 </html>

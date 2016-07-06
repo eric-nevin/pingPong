@@ -23,10 +23,6 @@ class Dashboard extends CI_Controller {
 		$data = array('user_list' => $user_list);
 		$this->load->view('users', $data);
 	}
-	// public function dispplay_all_groups(){
-	// 	$group_list = $this->Dashboards->display_groups();
-
-	// }
 	public function display_group_page($group_id){
 		$group_info = $this->Dashboards->display_group_page_info($group_id);
 		$group_users = $this->Dashboards->display_group_page_users($group_id);
@@ -97,11 +93,45 @@ class Dashboard extends CI_Controller {
 		redirect("/view_profile/".$invite_id);
 	}
 
-//
-	public function create_group(){
-		// for admin use
-		$group_info = $this->input->post();
-		$this->Dashboards->add_group($group_info);
+	public function display_settings() {
+		$id = $this->session->userdata('id');
+		$user_info = $this->Dashboards->display_user($id);
+		$available_groups = $this->Dashboards->get_active_groups();
+		$global_ladder = $this->Dashboards->display_global_ladder();
+		$current_group = $this->Dashboards->display_current_group($id);
+		$global_score = $this->Dashboards->display_global_score($id);
+		$data = array('user_info' => $user_info, 'available_groups' => $available_groups, 'global_ladder' => $global_ladder, 'current_group' => $current_group, 'global_score' => $global_score);
+		$this->load->view('settings', $data);
 
+	}
+	public function add_settings() {
+		$id = $this->session->userdata('id');
+		$settings = $this->input->post();
+		$this->Dashboards->change_settings($settings, $id);
+		redirect('settings');
+
+	}
+	public function change_user_availability(){
+		$id = $this->session->userdata('id');
+		$this->Dashboards->user_availability($id);
+		redirect('settings');
+	}
+	public function display_active_groups(){
+		$id = $this->session->userdata('id');
+		$user_info = $this->Dashboards->display_user($id);
+		$global_score = $this->Dashboards->display_global_score($id);
+		$available_groups = $this->Dashboards->get_active_groups();
+		$global_ladder = $this->Dashboards->display_global_ladder();
+		$data = array('available_groups' => $available_groups, 'global_ladder' => $global_ladder, 'user_info' => $user_info, 'global_score' => $global_score);
+		$this->load->view('active_groups', $data);
+	}
+	public function display_active_users() {
+		$id = $this->session->userdata('id');
+		$user_info = $this->Dashboards->display_user($id);
+		$global_score = $this->Dashboards->display_global_score($id);
+		$global_ladder = $this->Dashboards->display_global_ladder();
+		$available_users = $this->Dashboards->display_available_users();
+		$data = array('user_info' => $user_info, 'global_score' => $global_score, 'global_ladder' => $global_ladder, 'available_users' => $available_users);
+		$this->load->view('active_users', $data);
 	}
 }

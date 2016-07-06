@@ -56,9 +56,15 @@ $route['notifications'] = 'dashboard/display_notifications';
 $route['chat/(:any)'] = 'dashboard/display_chat/$1';
 $route['invite/(:any)'] = 'dashboard/add_invite/$1';
 $route['confirmation'] = 'dashboard/confirmed';
+$route['settings'] = 'dashboard/display_settings';
+$route['change_settings'] = 'dashboard/add_settings';
+$route['activate_user'] = 'dashboard/change_user_availability';
+$route['all_users'] = 'dashboard/display_active_users';
 
-$route['unicorn'] = 'unicorn/display_admin';
+
+$route['admin'] = 'unicorn/display_admin';
 $route['add_group'] = 'unicorn/add_group';
+$route['inactivate_group/(:any)'] = 'unicorn/remove_active_group/$1';
 
 $route['chat_api'] = 'mean/api';
 $route['group_api/(:any)'] = 'mean/group_api/$1';

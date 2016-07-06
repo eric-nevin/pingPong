@@ -7,8 +7,8 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
-    <link rel="stylesheet" href="assets/css/home.css">
-    <link rel="stylesheet" href="assets/css/SideBar.css">
+    <link rel="stylesheet" href="/assets/css/home.css">
+    <link rel="stylesheet" href="/assets/css/SideBar.css">
     <script type="text/javascript">
       $(document).ready(function () {
         
@@ -40,10 +40,7 @@
               <a href="#">Tournaments</a>
           </li>
           <li>
-              <a href="/all_users">Active Users</a>
-          </li>
-           <li>
-              <a href="/chat/<?= $user_info['id']; ?>">Group Chat</a>
+              <a href="#">Stacks</a>
           </li>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Works <span class="caret"></span></a>
@@ -60,7 +57,7 @@
               <a href="/notifications">Notifications</a>
           </li>
           <li>
-              <a href="/settings">Settings</a>
+              <a href="#">Contact</a>
           </li>
           <li>
               <a href="/logoff">Logout</a>
@@ -76,26 +73,64 @@
           <span class="hamb-middle"></span>
           <span class="hamb-bottom"></span>
       </button>
-    <div class='container' id="homeback">  <!-- center of webpage info -->
-        <div class="row">
-            <div class="col-xs-3" id="ninja">
-                <img src="assets/images/yellow.png" alt="ninja">
-            </div>
-            <div class="col-xs-6">
-                <h3>Name: <?= $user_info['first_name']. " " .$user_info['last_name']; ?></h3>
-                <h3>Current Stack: <?= $user_info['stack']. " ". $user_info['start_date']; ?> </h3>
-                <h3>Total Wins: <?= $global_score[0]. '-' .$global_score[1]; ?>    </h3>
-            </div>
-        </div> <!-- end of top section -->
-        <div class="row">
-            <div class="col-xs-4">
+    <div class='container' id="groupback">  <!-- center of webpage info -->
+        
+<div class="col-xs-9">
+            <h2>Name: <?= $user_info['first_name']. " " .$user_info['last_name']; ?></h2>
+            <h4>Current Stack: <?= $current_group['stack']. " ". $current_group['start_date']; ?> </h4>
+            <h4>Total Wins: <?= $global_score[0]. '-' .$global_score[1]; ?>    </h4>
 
-                <?php foreach($groups as $values){ ?>
-                  <a href= "/group/<?= $values['id']; ?>"><button class="btn btn-primary"><?= $values['stack']. ' ' .$values['start_date']; ?></button></a>
-                <?= "<br>"; ?>
-                <?php } ?>
-            </div>  <!-- stacks stacks stacks -->
-        </div>
+            <?php //active, username, phone #, stack in a select ?>
+          <div id= 'settings'>
+            <a href='/activate_user'><button><?php if($user_info['availability'] == 1) { ?>
+                    Make unavailable to text messages
+                  <?php } else { ?>
+                    Make available to text messages
+            <?php } ?></button></a>
+
+            <form action='/change_settings' method='post'>
+              Change Username: <input type='text' name='username' value="<?= $user_info['username']; ?>"><br>
+              Change phone #: <input type='tel' name='telephone' value="<?= $user_info['phone_number']; ?>"><br>
+              New Stack: <select name="stack">
+              <?php foreach ($available_groups as $group) { ?>
+                <option value="<?= $group['id']; ?>"><?= $group['stack']; ?></option>
+              <?php } ?>
+              </select><br>
+
+        
+              <button type='submit'>Make Changes</button>
+              <a href='/home'><button>Cancel Changes</button></a>
+            </form>
+
+          </div>
+
+       
+          <!-- profile -->
+          </div>
+      </div> <!-- end of top section -->
+     
+     
+
+
+        
+
+     
+      
+      
+      
+ 
+
+
+
+
+
+
+
+
+
+
+        
+       
     </div> <!-- end of container -->
   </div> <!-- #page-content-wrapper -->
     <div class="col-xs-3" id="leaderboard"> <!-- fixed leaderboard to the rightside not in grid system -->
@@ -119,7 +154,6 @@
           </table>
       </div> <!-- leaderboard div -->
   </div>
-
        <!-- /#wrapper -->
 </body>
 </html>

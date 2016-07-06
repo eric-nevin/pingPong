@@ -9,6 +9,12 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
     <link rel="stylesheet" href="assets/css/home.css">
     <link rel="stylesheet" href="assets/css/SideBar.css">
+    <style type="text/css">
+      #all_users {
+        overflow: scroll;
+        height: 240px;
+      }
+    </style>
     <script type="text/javascript">
       $(document).ready(function () {
         
@@ -40,10 +46,7 @@
               <a href="#">Tournaments</a>
           </li>
           <li>
-              <a href="/all_users">Active Users</a>
-          </li>
-           <li>
-              <a href="/chat/<?= $user_info['id']; ?>">Group Chat</a>
+              <a href="/groups">Stacks</a>
           </li>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Works <span class="caret"></span></a>
@@ -84,20 +87,21 @@
             <div class="col-xs-6">
                 <h3>Name: <?= $user_info['first_name']. " " .$user_info['last_name']; ?></h3>
                 <h3>Current Stack: <?= $user_info['stack']. " ". $user_info['start_date']; ?> </h3>
-                <h3>Total Wins: <?= $global_score[0]. '-' .$global_score[1]; ?>    </h3>
-            </div>
-        </div> <!-- end of top section -->
-        <div class="row">
-            <div class="col-xs-4">
-
-                <?php foreach($groups as $values){ ?>
-                  <a href= "/group/<?= $values['id']; ?>"><button class="btn btn-primary"><?= $values['stack']. ' ' .$values['start_date']; ?></button></a>
+                <h3>All Available Users    </h3>
+                <div class="col-xs-4" id='all_users'>
+                <?php foreach($available_users as $values){ ?>
+                  <a href= "/view_profile/<?= $values['id']; ?>"><button class="btn btn-primary"><?= $values['username']; ?></button></a>
                 <?= "<br>"; ?>
                 <?php } ?>
             </div>  <!-- stacks stacks stacks -->
+            </div>
+        </div> <!-- end of top section -->
+        <div class="row">
+            
         </div>
     </div> <!-- end of container -->
   </div> <!-- #page-content-wrapper -->
+
     <div class="col-xs-3" id="leaderboard"> <!-- fixed leaderboard to the rightside not in grid system -->
           <h3 class="text-center">LeaderBoard</h3>
           <table class="table table-hover">
@@ -119,7 +123,6 @@
           </table>
       </div> <!-- leaderboard div -->
   </div>
-
        <!-- /#wrapper -->
 </body>
 </html>
