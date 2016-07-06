@@ -76,13 +76,19 @@
     <div class='container' id="groupback">  <!-- center of webpage info -->
         
 <div class="col-xs-9">
-            <h2>Name: <?= $user_info[0]['first_name']. " " .$user_info[0]['last_name']; ?></h2>
-            <h4>Current Stack: <?= $current_group['stack']. " ". $current_group['start_date']; ?> </h4>
+
+  <h1>SCORE PAGE</h1>
+            <h2><?= $my_user_info['username']; ?>
+              VS. <?= $user_info[0]['username']; ?> 
+            </h2>
+            <!-- <h4>Current Stack: <?= $current_group['stack']. " ". $current_group['start_date']; ?> </h4> -->
             <h4>Total Wins: <?= $global_score[0]. '-' .$global_score[1]; ?>    </h4>
 
         <form method="post" action="/add_score_form">
       
-          
+            <?php if(isset( $invite_game)){ ?>
+                <input type="hidden" value="<?=$invite_game?>" name="invite_game">
+            <?php } ?>
           
               <label>
                 <input type="radio" name="winner" id="gridRadios1" value="win" checked>

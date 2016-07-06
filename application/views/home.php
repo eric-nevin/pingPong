@@ -27,14 +27,15 @@
       <ul class="nav sidebar-nav">
           <li class="sidebar-brand">
               <a href="#">
-                 Brand
+                 Coding Dojo
               </a>
           </li>
           <li>
               <a href="/home">Home</a>
           </li>
           <li>
-              <a href="#">About</a>
+              <a href="#">Chat</a>
+
           </li>
           <li>
               <a href="#">Tournaments</a>
@@ -46,14 +47,15 @@
               <a href="/chat/<?= $user_info['id']; ?>">Group Chat</a>
           </li>
           <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Works <span class="caret"></span></a>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Stacks <span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
-              <li class="dropdown-header">Dropdown heading</li>
-              <li><a href="#">Action</a></li>
-              <li><a href="#">Another action</a></li>
-              <li><a href="#">Something else here</a></li>
-              <li><a href="#">Separated link</a></li>
-              <li><a href="#">One more separated link</a></li>
+              
+              
+              <li><a href="#">PHP</a></li>
+              <li><a href="#">iOS</a></li>
+              <li><a href="#">MEAN</a></li>
+              <li><a href="#">Ruby on Rails</a></li>
+              <li><a href="#">Web Fundamentals</a></li>
             </ul>
           </li>
           <li>
@@ -78,8 +80,16 @@
       </button>
     <div class='container' id="homeback">  <!-- center of webpage info -->
         <div class="row">
-            <div class="col-xs-3" id="ninja">
-                <img src="assets/images/yellow.png" alt="ninja">
+            <div class="col-xs-3" id="ninja">  
+            <?php if($global_score[0] > 100) { ?>
+                <img src="/assets/images/green.png" alt="ninja">
+            <?php } elseif($global_score[0] > 50) { ?>
+                <img src="/assets/images/black.png" alt="ninja">
+            <?php } elseif($global_score[0] > 25) { ?>
+                <img src="/assets/images/red.png" alt="ninja">
+            <?php } elseif ($global_score[0] < 25) { ?>
+                <img src="/assets/images/yellow.png" alt="ninja">
+            <?php } ?>
             </div>
             <div class="col-xs-6">
                 <h3>Name: <?= $user_info['first_name']. " " .$user_info['last_name']; ?></h3>
@@ -88,16 +98,20 @@
             </div>
         </div> <!-- end of top section -->
         <div class="row">
-            <div class="col-xs-4">
+            <div class="col-xs-9  text-center" id="whitebackground">
+                <h3>Challenge Current Stacks</h3>
 
                 <?php foreach($groups as $values){ ?>
-                  <a href= "/group/<?= $values['id']; ?>"><button class="btn btn-primary"><?= $values['stack']. ' ' .$values['start_date']; ?></button></a>
+                  <div class="col-xs-3" id="stacks">
+                  <a href= "/group/<?= $values['id']; ?>"><button class="btn btn-danger"><?= $values['stack']. ' ' .$values['start_date']; ?></button></a>
                 <?= "<br>"; ?>
+                </div>
                 <?php } ?>
             </div>  <!-- stacks stacks stacks -->
         </div>
     </div> <!-- end of container -->
   </div> <!-- #page-content-wrapper -->
+
     <div class="col-xs-3" id="leaderboard"> <!-- fixed leaderboard to the rightside not in grid system -->
           <h3 class="text-center">LeaderBoard</h3>
           <table class="table table-hover">
@@ -113,6 +127,7 @@
                   <tr>
                       <td><?=$values['rank']?></td>
                       <td><a href="#"><?=$values['username']?></a></td>
+                      <td><?= $values['stack']?></td>
 <?php } ?>
                   </tr>
               </tbody>

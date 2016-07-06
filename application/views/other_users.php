@@ -27,7 +27,7 @@
       <ul class="nav sidebar-nav">
           <li class="sidebar-brand">
               <a href="#">
-                 Brand
+                 Coding Dojo
               </a>
           </li>
           <li>
@@ -39,18 +39,17 @@
           <li>
               <a href="#">Tournaments</a>
           </li>
-          <li>
-              <a href="#">Stacks</a>
-          </li>
+        
           <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Works <span class="caret"></span></a>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Stacks <span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
-              <li class="dropdown-header">Dropdown heading</li>
-              <li><a href="#">Action</a></li>
-              <li><a href="#">Another action</a></li>
-              <li><a href="#">Something else here</a></li>
-              <li><a href="#">Separated link</a></li>
-              <li><a href="#">One more separated link</a></li>
+              
+              
+              <li><a href="#">PHP</a></li>
+              <li><a href="#">iOS</a></li>
+              <li><a href="#">MEAN</a></li>
+              <li><a href="#">Ruby on Rails</a></li>
+              <li><a href="#">Web Fundamentals</a></li>
             </ul>
           </li>
           <li>
@@ -78,13 +77,22 @@
 
     <div class='container' id="groupback">  <!-- center of webpage info -->
        <div class="row">
-          <div class="col-xs-3">
-            <img src="/assets/images/yellow.png" alt="ninja">
+           <div class="col-xs-3" id="ninja">  
+            <?php if($global_score[0] > 100) { ?>
+                <img src="/assets/images/green.png" alt="ninja">
+            <?php } elseif($global_score[0] > 50) { ?>
+                <img src="/assets/images/black.png" alt="ninja">
+            <?php } elseif($global_score[0] > 25) { ?>
+                <img src="/assets/images/red.png" alt="ninja">
+            <?php } elseif ($global_score[0] < 25) { ?>
+                <img src="/assets/images/yellow.png" alt="ninja">
+            <?php } ?>
           </div>
           <div class="col-xs-9">
             <h2>Name: <?= $user_info[0]['first_name']. " " .$user_info[0]['last_name']; ?></h2>
             <h4>Current Stack: <?= $current_group['stack']. " ". $current_group['start_date']; ?> </h4>
             <h4>Total Wins: <?= $global_score[0]. '-' .$global_score[1]; ?>    </h4>
+              <a href="/invite/<?= $user_info[0]['user_id'] ?>"><button class="btn btn-warning">Invite to game</button></a>
 
           <!-- profile -->
           </div>
@@ -93,8 +101,7 @@
         <div class="col-xs-3">
         </div>
         <div class="col-xs-6">
-          <a href="/invite/<?= $user_info[0]['user_id'] ?>"><div class="button_box">Invite to game</div></a>
-          <a href="/add_game/<?= $user_info[0]['user_id'] ?>"><div class="button_box">Add wins and losses with <?= $user_info[0]['username']; ?></div></a>
+          <a href="/add_game/<?= $user_info[0]['user_id'] ?>">Add wins and losses with <?= $user_info[0]['username']; ?></a>
           <p style="color: green;"><?= $this->session->flashdata('add_game_success'); ?></p>
           <?= $this->session->flashdata('invite'); ?>
         </div>
