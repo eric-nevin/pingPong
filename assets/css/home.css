@@ -22,3 +22,13 @@ body{
 	border-radius: 5px;
 	height: 600px;
 }
+#stacks{
+	background-color: white;
+	height: 200px;
+	border: 1px solid black;
+	border-radius:20px;
+}
+#whitebackground{
+	background-color: white;
+	border-radius: 20px;
+}

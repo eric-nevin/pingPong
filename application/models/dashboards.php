@@ -15,11 +15,14 @@ class Dashboards extends CI_Model {
 		return $this->db->query($query, $id)->row_array();
 	}
 	function display_groups(){
-		$query = "SELECT * FROM groups ORDER BY id desc LIMIT 3";
+		$query = "SELECT * FROM groups ORDER BY id desc LIMIT 4";
 		return $this->db->query($query)->result_array();
 	}
 	function display_global_ladder(){
-		$query = "SELECT * FROM users LEFT JOIN user_groups ON users.id = user_groups.user_id WHERE user_groups.group_id = 1 ORDER BY rank LIMIT 10";
+		$query = "SELECT * FROM users 
+		LEFT JOIN user_groups ON users.id = user_groups.user_id 
+		LEFT JOIN groups on user_groups.group_id = groups.id
+		WHERE user_groups.group_id = 1 ORDER BY rank LIMIT 10";
 		return $this->db->query($query)->result_array();
 		
 	}
@@ -185,11 +188,18 @@ class Dashboards extends CI_Model {
 				$query = "DELETE FROM invites WHERE id = ?";
 				$this->db->query($query, $invite['id']);
 			} 
-		}
-		
-		
-		
-		
-		
+		}	
+	}
+
+	function get_all_invites($id){
+		$query = "SELECT users.first_name, users.last_name, users.username, users.email, invites.id, invites.invited_id, invites.user_id FROM users
+			JOIN invites ON invites.user_id = users.id
+			WHERE invited_id = ?";
+		return $this->db->query($query, $id)->result_array(); 
+	}
+
+	function remove_invite($id){
+		$query = "DELETE from invites where id=?";
+		$this->db->query($query, $id);
 	}
 }

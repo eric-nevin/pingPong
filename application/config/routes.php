@@ -50,7 +50,13 @@ $route['home'] = 'dashboard/display_home';
 $route['all_users'] = 'dashboard/display_all_users';
 $route['group/(:any)'] = 'dashboard/display_group_page/$1';
 $route['view_profile/(:any)'] = 'dashboard/display_other_profile/$1';
+
 $route['add_game/(:any)'] = 'dashboard/display_add_game/$1';
+$route['accept_game/(:any)/(:any)'] = 'dashboard/display_add_accept_game/$1/$2';
+$route['decline/(:any)'] = 'dashboard/decline/$1';
+
+
+
 $route['add_score_form'] = 'dashboard/add_potential_game';
 $route['notifications'] = 'dashboard/display_notifications';
 $route['chat/(:any)'] = 'dashboard/display_chat/$1';
