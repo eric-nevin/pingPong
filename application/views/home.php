@@ -95,6 +95,10 @@
                 <h3>Name: <?= $user_info['first_name']. " " .$user_info['last_name']; ?></h3>
                 <h3>Current Stack: <?= $user_info['stack']. " ". $user_info['start_date']; ?> </h3>
                 <h3>Total Wins: <?= $global_score[0]. '-' .$global_score[1]; ?>    </h3>
+                <form action='/text' method='post'>
+                  <button type='submit'>Text</button>
+                </form>
+
             </div>
         </div> <!-- end of top section -->
         <div class="row">
@@ -107,7 +111,8 @@
                 <?= "<br>"; ?>
                 </div>
                 <?php } ?>
-            </div>  <!-- stacks stacks stacks -->
+            </div>
+              <!-- stacks stacks stacks -->
         </div>
     </div> <!-- end of container -->
   </div> <!-- #page-content-wrapper -->
