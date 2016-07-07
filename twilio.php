@@ -1,8 +1,8 @@
 <?php
  
 // ==== Control Vars =======
-$strFromNumber = "+1xxx";
-$strToNumber = "+1xxx";
+$strFromNumber = "+16692363614";
+$strToNumber = "+1";
 $strMsg = "Did you catch Olivier's nip slip last night? OMG right?"; //Olivier accidentally pulled up a porn site on a projector 
 $aryResponse = array();
  
@@ -11,7 +11,7 @@ $aryResponse = array();
     require_once ("inc/Services/Twilio.php");
  
     // set our AccountSid and AuthToken - from www.twilio.com/user/account
-    $AccountSid = "xxx";
+    $AccountSid = "AP2b3c70247abe5a2069b28243139bb5fc";
     $AuthToken = "xxx";
  
     // ini a new Twilio Rest Client
