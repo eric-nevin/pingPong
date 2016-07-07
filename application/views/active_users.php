@@ -33,30 +33,35 @@
       <ul class="nav sidebar-nav">
           <li class="sidebar-brand">
               <a href="#">
-                 Brand
+                 Coding Dojo
               </a>
           </li>
           <li>
               <a href="/home">Home</a>
           </li>
           <li>
-              <a href="#">About</a>
+              <a href="#">Chat</a>
+
           </li>
           <li>
               <a href="#">Tournaments</a>
           </li>
           <li>
-              <a href="/groups">Stacks</a>
+              <a href="/all_users">Active Users</a>
+          </li>
+           <li>
+              <a href="/chat/<?= $user_info['id']; ?>">Group Chat</a>
           </li>
           <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Works <span class="caret"></span></a>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Stacks <span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
-              <li class="dropdown-header">Dropdown heading</li>
-              <li><a href="#">Action</a></li>
-              <li><a href="#">Another action</a></li>
-              <li><a href="#">Something else here</a></li>
-              <li><a href="#">Separated link</a></li>
-              <li><a href="#">One more separated link</a></li>
+
+              <?php foreach($groups as $values){ ?>
+              
+              <li><a href="/group/<?= $values['id']; ?>"><?= $values['stack']?></a></li>
+              
+
+              <?php } ?>
             </ul>
           </li>
           <li>
@@ -79,49 +84,39 @@
           <span class="hamb-middle"></span>
           <span class="hamb-bottom"></span>
       </button>
-    <div class='container' id="homeback">  <!-- center of webpage info -->
-        <div class="row">
-            <div class="col-xs-3" id="ninja">
-                <img src="assets/images/yellow.png" alt="ninja">
-            </div>
-            <div class="col-xs-6">
-                <h3>Name: <?= $user_info['first_name']. " " .$user_info['last_name']; ?></h3>
-                <h3>Current Stack: <?= $user_info['stack']. " ". $user_info['start_date']; ?> </h3>
-                <h3>All Available Users    </h3>
-                <div class="col-xs-4" id='all_users'>
-                <?php foreach($available_users as $values){ ?>
-                  <a href= "/view_profile/<?= $values['id']; ?>"><button class="btn btn-primary"><?= $values['username']; ?></button></a>
-                <?= "<br>"; ?>
-                <?php } ?>
-            </div>  <!-- stacks stacks stacks -->
-            </div>
-        </div> <!-- end of top section -->
+    <div class='container' id="whitebackground">  <!-- center of webpage info -->
         <div class="row">
             
-        </div>
+            <div class="col-xs-8 col-xs-offset-2">
+                <h3 class="text-center">All Available Users    </h3>
+               
+                  <table class="table table-hover">
+                    <thead>
+                      <tr>
+                        <th>Name:</th>
+                        <th>Stack:</th>
+                        <th>Rank:</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                    <!-- <?php var_dump($available_users) ?> -->
+                <?php foreach($available_users as $values){ ?>
+                      <tr>
+                        
+                        <td><a href= "/view_profile/<?= $values['id']; ?>"><?= $values['username']; ?></a></td>
+                      </tr>
+                <?php } ?>
+                    </tbody>
+                  </table>
+              
+           
+            </div>
+        </div> <!-- end of top section -->
+       
     </div> <!-- end of container -->
   </div> <!-- #page-content-wrapper -->
 
-    <div class="col-xs-3" id="leaderboard"> <!-- fixed leaderboard to the rightside not in grid system -->
-          <h3 class="text-center">LeaderBoard</h3>
-          <table class="table table-hover">
-              <thead>
-                  <tr>
-                      <th>Rank</th>
-                      <th>Name</th>
-                      <th>Stack</th>
-                  </tr>
-              </thead>
-              <tbody>
-<?php foreach($global_ladder as $values){ ?>
-                  <tr>
-                      <td><?=$values['rank']?></td>
-                      <td><a href="#"><?=$values['username']?></a></td>
-<?php } ?>
-                  </tr>
-              </tbody>
-          </table>
-      </div> <!-- leaderboard div -->
+    
   </div>
        <!-- /#wrapper -->
 </body>

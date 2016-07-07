@@ -32,3 +32,12 @@ body{
 	background-color: white;
 	border-radius: 20px;
 }
+
+#stacks img{
+	height: 150px;
+	width: 150px;
+}
+
+#whitebackground{
+	background-color: white;
+}
