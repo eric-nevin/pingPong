@@ -1,1 +1,1 @@
-# BetMe1
+# Ping Pong scorekeeping application
