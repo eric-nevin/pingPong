@@ -75,7 +75,7 @@ $route['inactivate_group/(:any)'] = 'unicorn/remove_active_group/$1';
 $route['chat_api'] = 'mean/api';
 $route['group_api/(:any)'] = 'mean/group_api/$1';
 
-$route['text'] = 'twilioController/index';
+$route['text/(:any)'] = 'twilioController/index/$1';
 
 
 $route['404_override'] = '';

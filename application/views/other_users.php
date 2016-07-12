@@ -93,6 +93,13 @@
             <h4>Current Stack: <?= $current_group['stack']. " ". $current_group['start_date']; ?> </h4>
             <h4>Total Wins: <?= $global_score[0]. '-' .$global_score[1]; ?>    </h4>
               <a href="/invite/<?= $user_info[0]['user_id'] ?>"><button class="btn btn-warning">Invite to game</button></a>
+              <form action='/text' method='post'>
+                  <input type="hidden" name="first_name" value="<?= $user_info[0]['first_name']?>">
+                  <input type="hidden" name="last_name" value="<?= $user_info[0]['last_name']?>">
+                  <input type="hidden" name="user_f" value="<?= $logged_user['first_name']?>">
+                  <input type="hidden" name="user_l" value="<?= $logged_user['last_name']?>">
+                  <button type='submit' class="btn btn-danger">Send Challenge Text!</button>
+              </form>
 
           <!-- profile -->
           </div>

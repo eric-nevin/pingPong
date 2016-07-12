@@ -244,7 +244,11 @@ class Dashboards extends CI_Model {
 		
 	}
 	function display_available_users(){
-		$query = "SELECT * FROM users WHERE availability = 1";
+		$query = "SELECT users.id, users.first_name, users.last_name, users.username, user_groups.rank,   user_groups.points, groups.stack, groups.start_date
+				FROM users
+				LEFT JOIN user_groups ON users.id = user_groups.user_id 
+				LEFT JOIN groups on user_groups.group_id = groups.id
+				WHERE availability = 1";
 		return $this->db->query($query)->result_array();
 	}
 

@@ -24,19 +24,22 @@ class Dashboard extends CI_Controller {
 		$this->load->view('users', $data);
 	}
 	public function display_group_page($group_id){
+		$groups = $this->Dashboards->display_groups();
 		$group_info = $this->Dashboards->display_group_page_info($group_id);
 		$group_users = $this->Dashboards->display_group_page_users($group_id);
 		$group_ladder = $this->Dashboards->display_group_ladder($group_id);
-		$data = array('group_info' => $group_info, 'group_users' => $group_users, 'group_ladder' => $group_ladder);
+		$data = array('group_info' => $group_info, 'group_users' => $group_users, 'group_ladder' => $group_ladder, 'groups' => $groups);
 		$this->load->view('group', $data);
 	}
 	public function display_other_profile($user_id){
 		$id = $this->session->userdata('id');
+		$logged_user = $this->Dashboards->get_user($id);
+
 		$user_info = $this->Dashboards->display_home_users($user_id);
 		$current_group = $this->Dashboards->display_current_group($user_id);
 		$global_score = $this->Dashboards->display_global_score($user_id);
 		$global_ladder = $this->Dashboards->display_global_ladder();
-		$data = array('user_info' => $user_info, 'global_score' => $global_score, 'current_group' => $current_group, 'global_ladder' => $global_ladder);
+		$data = array('user_info' => $user_info, 'global_score' => $global_score, 'current_group' => $current_group, 'global_ladder' => $global_ladder, 'logged_user' => $logged_user);
 		if($id == $user_id){
 			redirect('/home');
 		} else {
@@ -127,7 +130,8 @@ class Dashboard extends CI_Controller {
 		} else {
 			$this->session->set_flashdata('invite', 'Successfully invited to game');
 		}
-		redirect("/view_profile/".$invite_id);
+		redirect("/text/".$invite_id);
+		
 	}
 
 	public function display_settings() {

@@ -49,13 +49,13 @@
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Stacks <span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
+
+              <?php foreach($groups as $values){ ?>
               
+              <li><a href="/group/<?= $values['id']; ?>"><?= $values['stack']?></a></li>
               
-              <li><a href="#">PHP</a></li>
-              <li><a href="#">iOS</a></li>
-              <li><a href="#">MEAN</a></li>
-              <li><a href="#">Ruby on Rails</a></li>
-              <li><a href="#">Web Fundamentals</a></li>
+
+              <?php } ?>
             </ul>
           </li>
           <li>
@@ -95,10 +95,6 @@
                 <h3>Name: <?= $user_info['first_name']. " " .$user_info['last_name']; ?></h3>
                 <h3>Current Stack: <?= $user_info['stack']. " ". $user_info['start_date']; ?> </h3>
                 <h3>Total Wins: <?= $global_score[0]. '-' .$global_score[1]; ?>    </h3>
-                <form action='/text' method='post'>
-                  <button type='submit'>Text</button>
-                </form>
-
             </div>
         </div> <!-- end of top section -->
         <div class="row">
@@ -107,7 +103,18 @@
 
                 <?php foreach($groups as $values){ ?>
                   <div class="col-xs-3" id="stacks">
-                  <a href= "/group/<?= $values['id']; ?>"><button class="btn btn-danger"><?= $values['stack']. ' ' .$values['start_date']; ?></button></a>
+                  <br>
+                  <a href= "/group/<?= $values['id']; ?>">  
+                  <?php if($values['stack'] == "php"){ ?>
+                        <img src="/assets/images/code.png" alt="php">
+                      <?php } elseif ($values['stack'] == "ios"){ ?>
+                        <img src="/assets/images/swift.png" alt="ios">
+                      <?php } elseif ($values['stack'] == "mean") { ?>
+                        <img src="/assets/images/angular.png" alt="mean">
+                      <?php } elseif ($values['stack'] == "web fundamental") { ?>
+                        <img src="/assets/images/html.png" alt="html">
+                        <?php } ?>
+                        </a>
                 <?= "<br>"; ?>
                 </div>
                 <?php } ?>
@@ -117,6 +124,7 @@
     </div> <!-- end of container -->
   </div> <!-- #page-content-wrapper -->
 
+ 
     <div class="col-xs-3" id="leaderboard"> <!-- fixed leaderboard to the rightside not in grid system -->
           <h3 class="text-center">LeaderBoard</h3>
           <table class="table table-hover">
@@ -131,8 +139,8 @@
 <?php foreach($global_ladder as $values){ ?>
                   <tr>
                       <td><?=$values['rank']?></td>
-                      <td><a href="#"><?=$values['username']?></a></td>
-                      <td><?= $values['stack']?></td>
+                      <td><a href="/view_profile/<?= $values['user_id']?>"><?=$values['username']?></a></td>
+                      <td><a href="/group/<?=$values['group_id']?>"><?= $values['stack']?></a></td>
 <?php } ?>
                   </tr>
               </tbody>

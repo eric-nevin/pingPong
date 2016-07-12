@@ -23,41 +23,46 @@
 <div id="wrapper">
   <div class="overlay"></div>
   <!-- Sidebar -->
-  <nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
+   <nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
       <ul class="nav sidebar-nav">
           <li class="sidebar-brand">
               <a href="#">
-                 Brand
+                 Coding Dojo
               </a>
           </li>
           <li>
               <a href="/home">Home</a>
           </li>
           <li>
-              <a href="#">About</a>
+              <a href="#">Chat</a>
+
           </li>
           <li>
               <a href="#">Tournaments</a>
           </li>
           <li>
-              <a href="#">Stacks</a>
+              <a href="/all_users">Active Users</a>
+          </li>
+           <li>
+              <a href="">Group Chat</a>
           </li>
           <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Works <span class="caret"></span></a>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Stacks <span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
-              <li class="dropdown-header">Dropdown heading</li>
-              <li><a href="#">Action</a></li>
-              <li><a href="#">Another action</a></li>
-              <li><a href="#">Something else here</a></li>
-              <li><a href="#">Separated link</a></li>
-              <li><a href="#">One more separated link</a></li>
+
+              <?php foreach($groups as $values){ ?>
+              
+              <li><a href="/group/<?= $values['id']; ?>"><?= $values['stack']?></a></li>
+              
+
+              <?php } ?>
             </ul>
           </li>
           <li>
               <a href="/notifications">Notifications</a>
           </li>
           <li>
-              <a href="#">Contact</a>
+              <a href="/settings">Settings</a>
           </li>
           <li>
               <a href="/logoff">Logout</a>
@@ -73,30 +78,51 @@
           <span class="hamb-middle"></span>
           <span class="hamb-bottom"></span>
       </button>
-
+        
 
 
     <div class='container' id="groupback">  <!-- center of webpage info -->
        <div class="row">
-            <h2><?= $group_info['stack']. " ".$group_info['start_date']; ?></h2>
+            <h1 class="text-center"><?= $group_info['stack']. " ".$group_info['start_date']; ?></h1>
         </div>
 
         <div class="row">
-            <div class="col-xs-6">
-                <h1>Cohort Players</h1>
+            <div class="col-xs-5">
+                <h3 class="text-center">Cohort Players</h3>
+                <table class="table table-hover">
+                  <thead>
+                    <tr>
+                      <th>Name </th>
+                      <th>Username </th>
+                      <th>Rank </th>
+                    </tr>
+                  </thead>
+                  <tbody>
                 <?php foreach($group_users as $values){ ?>
-                    <a href="/view_profile/<?= $values['id']; ?>"><?= $values['username']; ?></a><br>
+                    <tr>
+                      <td><?= $values['first_name']. " " .$values['last_name']?></td>
+                      <td><a href="/view_profile/<?= $values['id']; ?>"><?= $values['username']; ?></a></td>
+                      <td><?= $values['rank']?></td>
+                    </tr>
                 <?php } ?>
+                  </tbody>
+                </table>
             </div>
 
-            <div class="col-xs-6">
-                <h1>Cohort Leaders</h1>
+            <div class="col-xs-4 col-xs-offset-2">
+                <h3 class="text-center">Cohort Leaders</h3>
+                  <ul>
             <?php foreach($group_ladder as $values){ ?>
-                <a href="/view_profile/<?= $values['id']; ?>"><?= $values['rank']. " " .$values['username']; ?></a><br>
+                <li><a href="/view_profile/<?= $values['id']; ?>"><?= $values['rank']. " " .$values['username']; ?></a></li>
             <?php } ?>
+                  </ul>
             </div>
         </div>
-        <a href="/chat/<?= $group_info['id']; ?>">Chat</a> 
+        <div class="row">
+            <div class="col-xs-12 text-center">
+              <a href="/chat/<?= $group_info['id']; ?>"><button class="btn btn-primary">Chat Room</button></a> 
+            </div>
+        </div>
     </div> <!-- end of container -->
   </div> <!-- #page-content-wrapper -->
     
